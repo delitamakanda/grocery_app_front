@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:grocery_app_front/utils/colors.dart';
+import 'package:grocery_app_front/utils/dimensions.dart';
 
 class BigText extends StatelessWidget {
   final Color? color;
@@ -11,7 +12,7 @@ class BigText extends StatelessWidget {
       {Key? key,
       this.color = AppColors.mainBlackColor,
       required this.text,
-      this.size = 20,
+      this.size = 0,
       this.overflow = TextOverflow.ellipsis})
       : super(key: key);
 
@@ -24,6 +25,6 @@ class BigText extends StatelessWidget {
             color: color,
             fontFamily: 'Roboto',
             fontWeight: FontWeight.w400,
-            fontSize: size));
+            fontSize: size == 0 ? Dimensions.fontSize20 : size));
   }
 }
