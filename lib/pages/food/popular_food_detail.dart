@@ -1,16 +1,10 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/widgets.dart';
 import 'package:grocery_app_front/utils/colors.dart';
 import 'package:grocery_app_front/utils/dimensions.dart';
 import 'package:grocery_app_front/widgets/app_column.dart';
 import 'package:grocery_app_front/widgets/app_icon.dart';
 import 'package:grocery_app_front/widgets/big_text.dart';
-import 'package:grocery_app_front/widgets/icon_and_text_widget.dart';
-import 'package:grocery_app_front/widgets/small_text.dart';
+import 'package:grocery_app_front/widgets/expendable_text_widget.dart';
 
 class PopularFoodDetail extends StatelessWidget {
   const PopularFoodDetail({Key? key}) : super(key: key);
@@ -73,8 +67,16 @@ class PopularFoodDetail extends StatelessWidget {
                       SizedBox(
                         height: Dimensions.height20,
                       ),
+                      Expanded(
+                        child: SingleChildScrollView(
+                          child: ExpendableTextWidget(
+                            text:
+                                "An easy recipe for delicious, well-seasoned Asian meatballs with a marvelous sauce – sticky, with just a hint of sweetness, and very flavorful. I make them with ground beef, but the same recipe works beautifully with ground pork as well. These meatballs are the best! They combine the fun of eating meatballs with the extra fun of a sweet, sticky sauce. My kids adore them and love helping me make them.\nBut just as importantly, the grownups love them too! The meatballs themselves are very well seasoned - their flavor is quite complex and the Asian-style glaze greatly enhances them.Here's an overview of the ingredients you'll need to make these Asian meatballs. The exact measurements are listed in the recipe card below.Ground beef: I like to use lean ground beef in this recipe (85/15). I find that leaner than that tends to be too dry.Cilantro: If you dislike cilantro, you can use parsley instead. Though it really does add a unique flavor to the meat. However, if you're out of fresh herbs, you can simply use dried spices.",
+                          ),
+                        ),
+                      )
                     ]),
-              ))
+              )),
         ],
       ),
       bottomNavigationBar: Container(
