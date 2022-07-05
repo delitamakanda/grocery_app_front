@@ -13,8 +13,6 @@ class PopularProductController extends GetxController {
       _popularProductList = [];
       // _popularProductList.addAll();
       update();
-    } else {
-      // _popularProductList = [];
-    }
+    } else {}
   }
 }
