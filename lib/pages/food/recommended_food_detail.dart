@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:grocery_app_front/controllers/recommended_product_controller.dart';
 import 'package:grocery_app_front/main.dart';
 import 'package:grocery_app_front/routes/route_helper.dart';
+import 'package:grocery_app_front/utils/app_constants.dart';
 import 'package:grocery_app_front/utils/colors.dart';
 import 'package:grocery_app_front/utils/dimensions.dart';
 import 'package:grocery_app_front/widgets/app_icon.dart';
@@ -9,10 +11,13 @@ import 'package:grocery_app_front/widgets/big_text.dart';
 import 'package:grocery_app_front/widgets/expendable_text_widget.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
-  const RecommendedFoodDetail({Key? key}) : super(key: key);
+  int pageId;
+  RecommendedFoodDetail({Key? key, required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<RecommendedProductController>().recommendedProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
@@ -45,16 +50,17 @@ class RecommendedFoodDetail extends StatelessWidget {
                         topRight: Radius.circular(Dimensions.radius20))),
                 child: Center(
                     child: BigText(
-                        size: Dimensions.fontSize26,
-                        text: "Chinese meatballs")),
+                        size: Dimensions.fontSize26, text: product.name!)),
               ),
             ),
             pinned: true,
             backgroundColor: AppColors.yellowColor,
             expandedHeight: Dimensions.popularFoodDetailImageSize,
             flexibleSpace: FlexibleSpaceBar(
-                background: Image.asset("assets/image/food0.jpg",
-                    width: double.maxFinite, fit: BoxFit.cover)),
+                background: Image.network(
+                    "${AppConstants.BASE_URL.trim()}${AppConstants.UPLOAD_URL}${product.img!}",
+                    width: double.maxFinite,
+                    fit: BoxFit.cover)),
           ),
           SliverToBoxAdapter(
               child: Column(
@@ -62,9 +68,7 @@ class RecommendedFoodDetail extends StatelessWidget {
               Container(
                 margin: EdgeInsets.only(
                     left: Dimensions.width20, right: Dimensions.width20),
-                child: ExpendableTextWidget(
-                    text:
-                        "An easy recipe for delicious, well-seasoned Asian meatballs with a marvelous sauce – sticky, with just a hint of sweetness, and very flavorful. I make them with ground beef, but the same recipe works beautifully with ground pork as well. These meatballs are the best! They combine the fun of eating meatballs with the extra fun of a sweet, sticky sauce. My kids adore them and love helping me make them.\nBut just as importantly, the grownups love them too! The meatballs themselves are very well seasoned - their flavor is quite complex and the Asian-style glaze greatly enhances them.Here's an overview of the ingredients you'll need to make these Asian meatballs. The exact measurements are listed in the recipe card below.Ground beef: I like to use lean ground beef in this recipe (85/15). I find that leaner than that tends to be too dry.Cilantro: If you dislike cilantro, you can use parsley instead. Though it really does add a unique flavor to the meat. However, if you're out of fresh herbs, you can simply use dried spices. An easy recipe for delicious, well-seasoned Asian meatballs with a marvelous sauce – sticky, with just a hint of sweetness, and very flavorful. I make them with ground beef, but the same recipe works beautifully with ground pork as well. These meatballs are the best! They combine the fun of eating meatballs with the extra fun of a sweet, sticky sauce. My kids adore them and love helping me make them.\nBut just as importantly, the grownups love them too! The meatballs themselves are very well seasoned - their flavor is quite complex and the Asian-style glaze greatly enhances them.Here's an overview of the ingredients you'll need to make these Asian meatballs. The exact measurements are listed in the recipe card below.Ground beef: I like to use lean ground beef in this recipe (85/15). I find that leaner than that tends to be too dry.Cilantro: If you dislike cilantro, you can use parsley instead. Though it really does add a unique flavor to the meat. However, if you're out of fresh herbs, you can simply use dried spices. An easy recipe for delicious, well-seasoned Asian meatballs with a marvelous sauce – sticky, with just a hint of sweetness, and very flavorful. I make them with ground beef, but the same recipe works beautifully with ground pork as well. These meatballs are the best! They combine the fun of eating meatballs with the extra fun of a sweet, sticky sauce. My kids adore them and love helping me make them.\nBut just as importantly, the grownups love them too! The meatballs themselves are very well seasoned - their flavor is quite complex and the Asian-style glaze greatly enhances them.Here's an overview of the ingredients you'll need to make these Asian meatballs. The exact measurements are listed in the recipe card below.Ground beef: I like to use lean ground beef in this recipe (85/15). I find that leaner than that tends to be too dry.Cilantro: If you dislike cilantro, you can use parsley instead. Though it really does add a unique flavor to the meat. However, if you're out of fresh herbs, you can simply use dried spices."),
+                child: ExpendableTextWidget(text: product.description!),
               )
             ],
           ))
@@ -89,7 +93,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                   iconSize: Dimensions.iconSize24,
                 ),
                 BigText(
-                  text: "€ 9.5 X 0",
+                  text: "${product.price!} € X 0",
                   color: AppColors.mainBlackColor,
                   size: Dimensions.fontSize26,
                 ),
@@ -130,7 +134,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 ),
                 Container(
                   child: BigText(
-                    text: "\$9.5 | Add to cart",
+                    text: "${product.price!} \€ | Add to cart",
                     color: Colors.white,
                   ),
                   padding: EdgeInsets.only(

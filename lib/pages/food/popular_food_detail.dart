@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grocery_app_front/controllers/popular_product_controller.dart';
 import 'package:grocery_app_front/routes/route_helper.dart';
+import 'package:grocery_app_front/utils/app_constants.dart';
 import 'package:grocery_app_front/utils/colors.dart';
 import 'package:grocery_app_front/utils/dimensions.dart';
 import 'package:grocery_app_front/widgets/app_column.dart';
@@ -17,8 +18,6 @@ class PopularFoodDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     var product =
         Get.find<PopularProductController>().popularProductList[pageId];
-    print("page is id " + pageId.toString());
-    print("product name is " + product.name.toString());
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -32,7 +31,8 @@ class PopularFoodDetail extends StatelessWidget {
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: AssetImage("assets/image/food0.jpg"))),
+                        image: NetworkImage(
+                            "${AppConstants.BASE_URL.trim()}${AppConstants.UPLOAD_URL}${product.img!}"))),
               )),
           Positioned(
               top: Dimensions.height45,
@@ -72,7 +72,7 @@ class PopularFoodDetail extends StatelessWidget {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      AppColumn(text: "Chinese meat balls"),
+                      AppColumn(text: product.name!),
                       SizedBox(
                         height: Dimensions.height20,
                       ),
@@ -83,8 +83,7 @@ class PopularFoodDetail extends StatelessWidget {
                       Expanded(
                         child: SingleChildScrollView(
                           child: ExpendableTextWidget(
-                            text:
-                                "An easy recipe for delicious, well-seasoned Asian meatballs with a marvelous sauce – sticky, with just a hint of sweetness, and very flavorful. I make them with ground beef, but the same recipe works beautifully with ground pork as well. These meatballs are the best! They combine the fun of eating meatballs with the extra fun of a sweet, sticky sauce. My kids adore them and love helping me make them.\nBut just as importantly, the grownups love them too! The meatballs themselves are very well seasoned - their flavor is quite complex and the Asian-style glaze greatly enhances them.Here's an overview of the ingredients you'll need to make these Asian meatballs. The exact measurements are listed in the recipe card below.Ground beef: I like to use lean ground beef in this recipe (85/15). I find that leaner than that tends to be too dry.Cilantro: If you dislike cilantro, you can use parsley instead. Though it really does add a unique flavor to the meat. However, if you're out of fresh herbs, you can simply use dried spices.",
+                            text: product.description!,
                           ),
                         ),
                       )
@@ -136,7 +135,7 @@ class PopularFoodDetail extends StatelessWidget {
             ),
             Container(
               child: BigText(
-                text: "\$10 | Add to cart",
+                text: "${product.price!} \€ | Add to cart",
                 color: Colors.white,
               ),
               padding: EdgeInsets.only(
