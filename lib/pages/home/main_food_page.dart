@@ -31,7 +31,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
                     children: [
                       BigText(text: "Paris", color: AppColors.mainColor),
                       Row(
-                        children: [
+                        children: const [
                           SmallText(
                               text: "46 quai de la marne",
                               color: Colors.black54),
@@ -58,7 +58,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
                 ]),
           ),
           // showing the body
-          Expanded(
+          const Expanded(
               child: SingleChildScrollView(
             child: FoodPageBody(),
           ))

@@ -5,6 +5,7 @@ import 'package:grocery_app_front/controllers/recommended_product_controller.dar
 import 'package:grocery_app_front/pages/food/recommended_food_detail.dart';
 import 'package:grocery_app_front/pages/home/main_food_page.dart';
 import 'package:grocery_app_front/pages/food/popular_food_detail.dart';
+import 'package:grocery_app_front/routes/route_helper.dart';
 import 'helpers/dependencies.dart' as dep;
 
 Future<void> main() async {
@@ -24,10 +25,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Grocery app front',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: MainFoodPage(),
+      initialRoute: RouteHelper.initial,
+      getPages: RouteHelper.routes,
     );
   }
 }
