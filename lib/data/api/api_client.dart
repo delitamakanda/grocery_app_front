@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:grocery_app_front/utils/app_constants.dart';
 
 class ApiClient extends GetConnect implements GetxService {
   late String token;
@@ -8,6 +9,7 @@ class ApiClient extends GetConnect implements GetxService {
   ApiClient({required this.appBaseUrl}) {
     baseUrl = appBaseUrl;
     timeout = Duration(seconds: 30);
+    token = AppConstants.TOKEN;
     _mainHeaders = {
       'Content-Type': 'application/json; charset=utf-8',
       'Authorization': 'Bearer $token'
