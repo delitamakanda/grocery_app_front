@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grocery_app_front/controllers/popular_product_controller.dart';
 import 'package:grocery_app_front/controllers/recommended_product_controller.dart';
-import 'package:grocery_app_front/pages/home/main_food_page.dart';
 import 'package:grocery_app_front/routes/route_helper.dart';
 import 'package:grocery_app_front/utils/app_constants.dart';
 import 'helpers/dependencies.dart' as dep;
@@ -19,14 +18,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Get.find<PopularProductController>().getPopularProductList();
-    Get.find<RecommendedProductController>().getRecommendedProductList();
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: AppConstants.APP_NAME,
-      home: const MainFoodPage(),
-      initialRoute: RouteHelper.initial,
-      getPages: RouteHelper.routes,
+    return GetBuilder<PopularProductController>(
+      builder: (_) {
+        return GetBuilder<RecommendedProductController>(
+          builder: (_) {
+            return GetMaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: AppConstants.APP_NAME,
+              initialRoute: RouteHelper.getSplash(),
+              getPages: RouteHelper.routes,
+            );
+          },
+        );
+      },
     );
   }
 }

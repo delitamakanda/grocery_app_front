@@ -64,4 +64,17 @@ class ProductModel {
     updatedAt = json['updatedAt'];
     typeId = json['typeId'];
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "id": id,
+      "name": name,
+      "price": price,
+      "img": img,
+      "location": location,
+      "createdAt": createdAt,
+      "updatedAt": updatedAt,
+      "typeId": typeId,
+    };
+  }
 }

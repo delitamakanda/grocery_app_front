@@ -1,11 +1,10 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get.dart';
 import 'package:grocery_app_front/controllers/popular_product_controller.dart';
 import 'package:grocery_app_front/controllers/recommended_product_controller.dart';
 import 'package:grocery_app_front/models/products_model.dart';
-import 'package:grocery_app_front/pages/food/popular_food_detail.dart';
 import 'package:grocery_app_front/routes/route_helper.dart';
 import 'package:grocery_app_front/utils/app_constants.dart';
 import 'package:grocery_app_front/utils/colors.dart';
@@ -14,7 +13,6 @@ import 'package:grocery_app_front/widgets/app_column.dart';
 import 'package:grocery_app_front/widgets/big_text.dart';
 import 'package:grocery_app_front/widgets/icon_and_text_widget.dart';
 import 'package:grocery_app_front/widgets/small_text.dart';
-import 'package:get/get.dart';
 import 'dart:core';
 
 class FoodPageBody extends StatefulWidget {
@@ -43,6 +41,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   @override
   void dispose() {
     pageController.dispose();
+    super.dispose();
   }
 
   @override
@@ -114,7 +113,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        Get.toNamed(RouteHelper.getRecommendedFood(index));
+                        Get.toNamed(
+                            RouteHelper.getRecommendedFood(index, "home"));
                       },
                       child: Container(
                         margin: EdgeInsets.only(
@@ -230,7 +230,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         children: [
           GestureDetector(
             onTap: () {
-              Get.toNamed(RouteHelper.getPopularFood(index));
+              Get.toNamed(RouteHelper.getPopularFood(index, "home"));
             },
             child: Container(
                 height: Dimensions.pageViewContainer,
