@@ -10,6 +10,7 @@ import 'package:grocery_app_front/widgets/app_column.dart';
 import 'package:grocery_app_front/widgets/app_icon.dart';
 import 'package:grocery_app_front/widgets/big_text.dart';
 import 'package:grocery_app_front/widgets/expendable_text_widget.dart';
+import 'package:grocery_app_front/widgets/small_text.dart';
 
 class PopularFoodDetail extends StatelessWidget {
   int pageId;
@@ -20,7 +21,7 @@ class PopularFoodDetail extends StatelessWidget {
     var product =
         Get.find<PopularProductController>().popularProductList[pageId];
     Get.find<PopularProductController>()
-        .initProduct(Get.find<CartController>());
+        .initProduct(product, Get.find<CartController>());
     return Scaffold(
         backgroundColor: Colors.white,
         body: Stack(
@@ -52,9 +53,36 @@ class PopularFoodDetail extends StatelessWidget {
                         icon: Icons.arrow_back_ios,
                       ),
                     ),
-                    AppIcon(
-                      icon: Icons.shopping_cart_outlined,
-                    )
+                    GetBuilder<PopularProductController>(builder: (controller) {
+                      return Stack(children: [
+                        AppIcon(
+                          icon: Icons.shopping_cart_outlined,
+                        ),
+                        Get.find<PopularProductController>().totalItems >= 1
+                            ? Positioned(
+                                right: 0,
+                                top: 0,
+                                child: AppIcon(
+                                  icon: Icons.circle,
+                                  size: 20,
+                                  iconColor: Colors.transparent,
+                                  backgroundColor: AppColors.mainColor,
+                                ),
+                              )
+                            : Container(),
+                        Get.find<PopularProductController>().totalItems >= 1
+                            ? Positioned(
+                                right: 5,
+                                top: 3,
+                                child: BigText(
+                                    color: Colors.white,
+                                    size: 12,
+                                    text: Get.find<PopularProductController>()
+                                        .totalItems
+                                        .toString()))
+                            : Container(),
+                      ]);
+                    })
                   ],
                 )),
             Positioned(
@@ -135,7 +163,7 @@ class PopularFoodDetail extends StatelessWidget {
                       SizedBox(
                         width: Dimensions.width10 / 2,
                       ),
-                      BigText(text: popularProduct.quantity.toString()),
+                      BigText(text: popularProduct.inCartItems.toString()),
                       SizedBox(
                         width: Dimensions.width10 / 2,
                       ),
@@ -147,24 +175,25 @@ class PopularFoodDetail extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(
-                  child: GestureDetector(
-                    onTap: () {
-                      popularProduct.addItem(product);
-                    },
+                GestureDetector(
+                  onTap: () {
+                    popularProduct.addItem(product);
+                  },
+                  child: Container(
                     child: BigText(
                       text: "${product.price!} € | Add to cart",
                       color: Colors.white,
                     ),
+                    padding: EdgeInsets.only(
+                        left: Dimensions.width20,
+                        top: Dimensions.height20,
+                        bottom: Dimensions.height20,
+                        right: Dimensions.width20),
+                    decoration: BoxDecoration(
+                        borderRadius:
+                            BorderRadius.circular(Dimensions.radius20),
+                        color: AppColors.mainColor),
                   ),
-                  padding: EdgeInsets.only(
-                      left: Dimensions.width20,
-                      top: Dimensions.height20,
-                      bottom: Dimensions.height20,
-                      right: Dimensions.width20),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(Dimensions.radius20),
-                      color: AppColors.mainColor),
                 )
               ],
             ),

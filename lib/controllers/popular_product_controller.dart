@@ -32,21 +32,21 @@ class PopularProductController extends GetxController {
 
   void setQuantity(bool isIncrement) {
     if (isIncrement) {
-      print("incremented" + _quantity.toString());
       _quantity = checkQuantity(_quantity + 1);
+      print("incremented " + _quantity.toString());
     } else {
-      print("decremented" + _quantity.toString());
       _quantity = checkQuantity(_quantity - 1);
+      print("decremented " + _quantity.toString());
     }
     update();
   }
 
   checkQuantity(int quantity) {
-    if (quantity < 0) {
+    if ((_inCartItems + quantity) < 0) {
       Get.snackbar("Item count", "You can't have less than one item",
           backgroundColor: AppColors.mainColor, colorText: Colors.white);
       return 0;
-    } else if (quantity > 20) {
+    } else if ((_inCartItems + quantity) > 20) {
       Get.snackbar("Item count", "You can't have more than 20 items",
           backgroundColor: AppColors.mainColor, colorText: Colors.white);
       return 20;
@@ -55,30 +55,37 @@ class PopularProductController extends GetxController {
     }
   }
 
-  void initProduct(CartController cart) {
+  void initProduct(ProductModel product, CartController cart) {
     _quantity = 0;
     _inCartItems = 0;
     _cart = cart;
-
+    var exist = false;
+    exist = _cart.existInCart(product);
     // if exist
     // get from storage _inCartItems=3
+    print("exist or not " + exist.toString());
+    if (exist) {
+      _inCartItems = _cart.getQuantity(product);
+    }
+    print("quantity in cart" + _inCartItems.toString());
   }
 
   void addItem(ProductModel product) {
-    if (_quantity > 0) {
-      _cart.addItem(product, _quantity);
-      _quantity = 0;
-      _cart.items.forEach((key, value) {
-        print("this key: " +
-            key.toString() +
-            " value: " +
-            value.id.toString() +
-            " the quantity: " +
-            value.quantity.toString());
-      });
-    } else {
-      Get.snackbar("Item count", "You should add an item to the cart",
-          backgroundColor: AppColors.mainColor, colorText: Colors.white);
-    }
+    _cart.addItem(product, _quantity);
+    _quantity = 0;
+    _inCartItems = _cart.getQuantity(product);
+    _cart.items.forEach((key, value) {
+      print("this key: " +
+          key.toString() +
+          " value: " +
+          value.id.toString() +
+          " the quantity: " +
+          value.quantity.toString());
+    });
+    update();
+  }
+
+  int get totalItems {
+    return _cart.totalItems;
   }
 }
