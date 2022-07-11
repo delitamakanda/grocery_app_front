@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grocery_app_front/controllers/cart_controller.dart';
 import 'package:grocery_app_front/data/repository/popular_product_repo.dart';
+import 'package:grocery_app_front/models/cart_model.dart';
 import 'package:grocery_app_front/models/products_model.dart';
 import 'package:grocery_app_front/utils/colors.dart';
 
@@ -41,10 +42,17 @@ class PopularProductController extends GetxController {
     update();
   }
 
-  checkQuantity(int quantity) {
+// _inCartItems = 2;
+// _quantity = 0;
+// _quantity = -2;
+  int checkQuantity(int quantity) {
     if ((_inCartItems + quantity) < 0) {
       Get.snackbar("Item count", "You can't have less than one item",
           backgroundColor: AppColors.mainColor, colorText: Colors.white);
+      if (_inCartItems > 0) {
+        _quantity = -_inCartItems;
+        return _quantity;
+      }
       return 0;
     } else if ((_inCartItems + quantity) > 20) {
       Get.snackbar("Item count", "You can't have more than 20 items",
@@ -87,5 +95,9 @@ class PopularProductController extends GetxController {
 
   int get totalItems {
     return _cart.totalItems;
+  }
+
+  List<CartModel> get getItems {
+    return _cart.getItems;
   }
 }
