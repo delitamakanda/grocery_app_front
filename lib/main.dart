@@ -4,6 +4,7 @@ import 'package:grocery_app_front/controllers/popular_product_controller.dart';
 import 'package:grocery_app_front/controllers/recommended_product_controller.dart';
 import 'package:grocery_app_front/pages/home/main_food_page.dart';
 import 'package:grocery_app_front/routes/route_helper.dart';
+import 'package:grocery_app_front/utils/app_constants.dart';
 import 'helpers/dependencies.dart' as dep;
 
 Future<void> main() async {
@@ -22,8 +23,8 @@ class MyApp extends StatelessWidget {
     Get.find<RecommendedProductController>().getRecommendedProductList();
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Grocery app front',
-      home: MainFoodPage(),
+      title: AppConstants.APP_NAME,
+      home: const MainFoodPage(),
       initialRoute: RouteHelper.initial,
       getPages: RouteHelper.routes,
     );
