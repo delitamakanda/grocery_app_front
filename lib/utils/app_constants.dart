@@ -9,5 +9,7 @@ class AppConstants {
   static const String UPLOAD_URL = '/uploads/';
 
   static const String TOKEN = '';
+
   static const String CART = 'cart';
+  static const String CART_HISTORY = 'cart-history';
 }

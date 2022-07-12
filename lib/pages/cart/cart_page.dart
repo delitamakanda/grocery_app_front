@@ -222,38 +222,23 @@ class CartPage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          // controller.addItem(, -1);
-                        },
-                        child: Icon(
-                          Icons.remove,
-                          color: AppColors.signColor,
-                        ),
-                      ),
                       SizedBox(
                         width: Dimensions.width10 / 2,
                       ),
-                      BigText(text: ""),
+                      BigText(text: "${controller.totalAmount.toString()} €"),
                       SizedBox(
                         width: Dimensions.width10 / 2,
                       ),
-                      GestureDetector(
-                          onTap: () {
-                            //controller.addItem(controller.getItems[index].product!, 1);
-                          },
-                          child: Icon(Icons.add, color: AppColors.signColor))
                     ],
                   ),
                 ),
                 GestureDetector(
                   onTap: () {
-                    // popularProduct.addItem(product);
+                    controller.addToHistory();
                   },
                   child: Container(
                     child: BigText(
-                      text:
-                          "${controller.totalAmount.toString()} € | Add to cart",
+                      text: "Checkout",
                       color: Colors.white,
                     ),
                     padding: EdgeInsets.only(

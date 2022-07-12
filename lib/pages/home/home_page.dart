@@ -17,8 +17,8 @@ class _HomePageState extends State<HomePage> {
 
   List pages = [
     const MainFoodPage(),
-    const Center(child: Text("history page")),
-    const CartPage(),
+    const Center(child: Text("archive page")),
+    const Center(child: Text("order history page")),
     const Center(child: Text("me page")),
   ];
   /* List<Widget> _buildScreens() {
