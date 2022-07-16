@@ -129,17 +129,16 @@ class CartHistoryPage extends StatelessWidget {
                                                                         .width10 /
                                                                     2),
                                                             decoration: BoxDecoration(
-                                                                borderRadius: BorderRadius
-                                                                    .circular(Dimensions
-                                                                            .radius15 /
-                                                                        2),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            Dimensions.radius15 /
+                                                                                2),
                                                                 image: DecorationImage(
                                                                     fit: BoxFit
                                                                         .cover,
                                                                     image: NetworkImage(AppConstants
                                                                             .BASE_URL +
-                                                                        AppConstants
-                                                                            .UPLOAD_URL +
                                                                         getCartHistoryList[listCounters -
                                                                                 1]
                                                                             .img!))),

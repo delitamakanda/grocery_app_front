@@ -18,7 +18,7 @@ class CartController extends GetxController {
   void addItem(ProductModel product, int quantity) {
     var totalQuantity = 0;
     if (_items.containsKey(product.id)) {
-      _items.update(product.id, (value) {
+      _items.update(product.id as int, (value) {
         totalQuantity = value.quantity! + quantity;
 
         return CartModel(
@@ -36,11 +36,11 @@ class CartController extends GetxController {
       }
     } else {
       if (quantity > 0) {
-        _items.putIfAbsent(product.id, () {
+        _items.putIfAbsent(product.id as int, () {
           return CartModel(
-              id: product.id,
+              id: product.id as int,
               name: product.name,
-              price: product.price,
+              price: product.price as int,
               img: product.img,
               quantity: quantity,
               isExist: false,
@@ -68,7 +68,7 @@ class CartController extends GetxController {
   int getQuantity(ProductModel product) {
     var quantity = 0;
     _items.forEach((key, value) {
-      if (key == product.id) {
+      if (key == product.id as int) {
         quantity = value.quantity!;
       }
     });

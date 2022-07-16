@@ -122,7 +122,7 @@ class CartPage extends StatelessWidget {
                                             image: DecorationImage(
                                                 fit: BoxFit.cover,
                                                 image: NetworkImage(
-                                                    "${AppConstants.BASE_URL.trim()}${AppConstants.UPLOAD_URL}${cartController.getItems[index].img!}")),
+                                                    "${cartController.getItems[index].img!}")),
                                             color: Colors.white,
                                             borderRadius: BorderRadius.circular(
                                                 Dimensions.radius20)),

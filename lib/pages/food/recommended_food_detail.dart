@@ -102,10 +102,8 @@ class RecommendedFoodDetail extends StatelessWidget {
               backgroundColor: AppColors.yellowColor,
               expandedHeight: Dimensions.popularFoodDetailImageSize,
               flexibleSpace: FlexibleSpaceBar(
-                  background: Image.network(
-                      "${AppConstants.BASE_URL.trim()}${AppConstants.UPLOAD_URL}${product.img!}",
-                      width: double.maxFinite,
-                      fit: BoxFit.cover)),
+                  background: Image.network("${product.img!}",
+                      width: double.maxFinite, fit: BoxFit.cover)),
             ),
             SliverToBoxAdapter(
                 child: Column(

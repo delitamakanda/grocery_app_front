@@ -132,7 +132,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                   image: DecorationImage(
                                       fit: BoxFit.cover,
                                       image: NetworkImage(
-                                          "${AppConstants.BASE_URL.trim()}${AppConstants.UPLOAD_URL}${recommendedProduct.recommendedProductList[index].img!}")))),
+                                          "${recommendedProduct.recommendedProductList[index].img!}")))),
                           Expanded(
                               child: Container(
                                   height: Dimensions.listViewTextContentSize,
@@ -240,8 +240,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     borderRadius: BorderRadius.circular(Dimensions.radius30),
                     image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: NetworkImage(
-                            "${AppConstants.BASE_URL.trim()}${AppConstants.UPLOAD_URL}${popularProduct.img!}")),
+                        image: NetworkImage("${popularProduct.img!}")),
                     color:
                         index.isEven ? Color(0xFF69c5df) : Color(0xFF9294cc))),
           ),

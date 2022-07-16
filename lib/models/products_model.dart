@@ -1,45 +1,42 @@
 class Product {
-  int? _totalSize;
-  int? _typeId;
-  int? _offset;
-  late List<ProductModel> _products;
-  List<ProductModel> get products => _products;
+  int? _count;
+  String? _next;
+  String? _previous;
+  late List<ProductModel> _results;
+  List<ProductModel> get products => _results;
 
   Product(
-      {required totalSize,
-      required typeId,
-      required offset,
-      required products}) {
-    this._totalSize = totalSize;
-    this._typeId = typeId;
-    this._offset = offset;
-    this._products = products;
+      {required count, required next, required previous, required products}) {
+    this._count = count;
+    this._next = next;
+    this._previous = previous;
+    this._results = products;
   }
 
   Product.fromJson(Map<String, dynamic> json) {
-    _totalSize = json['total_size'];
-    _typeId = json['type_id'];
-    _offset = json['offset'];
-    if (json['products'] != null) {
-      _products = <ProductModel>[];
-      json['products'].forEach((product) {
-        _products.add(ProductModel.fromJson(product));
+    _count = json['count'];
+    _next = json['next'];
+    _previous = json['previous'];
+    if (json['results'] != null) {
+      _results = <ProductModel>[];
+      json['results'].forEach((product) {
+        _results.add(ProductModel.fromJson(product));
       });
     }
   }
 }
 
 class ProductModel {
-  late int id;
+  late String id;
   String? name;
   String? description;
-  int? price;
+  String? price;
   int? stars;
   String? img;
   String? location;
   String? createdAt;
   String? updatedAt;
-  int? typeId;
+  int? category;
 
   ProductModel(
       {required this.id,
@@ -51,7 +48,7 @@ class ProductModel {
       this.location,
       this.createdAt,
       this.updatedAt,
-      this.typeId});
+      this.category});
   ProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
@@ -60,9 +57,9 @@ class ProductModel {
     stars = json['stars'];
     img = json['img'];
     location = json['location'];
-    createdAt = json['createdAt'];
-    updatedAt = json['updatedAt'];
-    typeId = json['typeId'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    category = json['category'];
   }
 
   Map<String, dynamic> toJson() {
@@ -72,9 +69,9 @@ class ProductModel {
       "price": price,
       "img": img,
       "location": location,
-      "createdAt": createdAt,
-      "updatedAt": updatedAt,
-      "typeId": typeId,
+      "created_at": createdAt,
+      "updated_at": updatedAt,
+      "category": category,
     };
   }
 }
