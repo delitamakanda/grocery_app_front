@@ -27,7 +27,7 @@ class Product {
 }
 
 class ProductModel {
-  late String id;
+  late int id;
   String? name;
   String? description;
   String? price;
