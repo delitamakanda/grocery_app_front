@@ -20,14 +20,14 @@ class CartModel {
       this.time,
       this.product});
   CartModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    price = json['price'];
-    img = json['img'];
-    quantity = json['quantity'];
-    isExist = json['isExist'];
-    time = json['time'];
-    product = ProductModel.fromJson(json['product']);
+    id = json["id"];
+    name = json["name"];
+    price = json["price"];
+    img = json["img"];
+    quantity = json["quantity"];
+    isExist = json["isExist"];
+    time = json["time"];
+    product = ProductModel.fromJson(json["product"]);
   }
 
   Map<String, dynamic> toJson() {

@@ -2,11 +2,10 @@ class Product {
   int? _count;
   String? _next;
   String? _previous;
-  late List<ProductModel> _results;
+  late final List<ProductModel> _results;
   List<ProductModel> get products => _results;
 
-  Product(
-      {required count, required next, required previous, required products}) {
+  Product({count, next, previous, required products}) {
     this._count = count;
     this._next = next;
     this._previous = previous;
@@ -14,12 +13,12 @@ class Product {
   }
 
   Product.fromJson(Map<String, dynamic> json) {
-    _count = json['count'];
-    _next = json['next'];
-    _previous = json['previous'];
-    if (json['results'] != null) {
+    _count = json["count"];
+    _next = json["next"];
+    _previous = json["previous"];
+    if (json["results"] != null) {
       _results = <ProductModel>[];
-      json['results'].forEach((product) {
+      json["results"].forEach((product) {
         _results.add(ProductModel.fromJson(product));
       });
     }
@@ -27,7 +26,7 @@ class Product {
 }
 
 class ProductModel {
-  late int id;
+  late final int id;
   String? name;
   String? description;
   String? price;
@@ -50,16 +49,16 @@ class ProductModel {
       this.updatedAt,
       this.category});
   ProductModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    description = json['description'];
-    price = json['price'];
-    stars = json['stars'];
-    img = json['img'];
-    location = json['location'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-    category = json['category'];
+    id = json["id"];
+    name = json["name"];
+    description = json["description"];
+    price = json["price"];
+    stars = json["stars"];
+    img = json["img"];
+    location = json["location"];
+    createdAt = json["created_at"];
+    updatedAt = json["updated_at"];
+    category = json["category"];
   }
 
   Map<String, dynamic> toJson() {
