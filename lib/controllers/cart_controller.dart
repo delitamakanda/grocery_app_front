@@ -40,7 +40,7 @@ class CartController extends GetxController {
           return CartModel(
               id: product.id,
               name: product.name,
-              price: product.price as int,
+              price: product.price,
               img: product.img,
               quantity: quantity,
               isExist: false,
@@ -92,7 +92,7 @@ class CartController extends GetxController {
   int get totalAmount {
     var total = 0;
     _items.forEach((key, value) {
-      total += value.quantity! * value.price!;
+      total += value.quantity! * int.parse(value.price!);
     });
     return total;
   }

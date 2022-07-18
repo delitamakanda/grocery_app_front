@@ -3,7 +3,7 @@ import 'package:grocery_app_front/models/products_model.dart';
 class CartModel {
   int? id;
   String? name;
-  int? price;
+  String? price;
   String? img;
   int? quantity;
   bool? isExist;
