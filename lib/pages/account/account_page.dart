@@ -83,7 +83,7 @@ class AccountPage extends StatelessWidget {
                         icon: Icons.location_on,
                         iconSize: Dimensions.height10 * 5 / 2,
                         size: Dimensions.height10 * 5,
-                        backgroundColor: AppColors.mainColor,
+                        backgroundColor: AppColors.yellowColor,
                         iconColor: Colors.white,
                       ),
                       bigText: BigText(
