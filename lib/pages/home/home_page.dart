@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:grocery_app_front/pages/account/account_page.dart';
 import 'package:grocery_app_front/pages/cart/cart_history.dart';
 import 'package:grocery_app_front/pages/cart/cart_page.dart';
 import 'package:grocery_app_front/pages/home/main_food_page.dart';
@@ -20,7 +21,7 @@ class _HomePageState extends State<HomePage> {
     const MainFoodPage(),
     const Center(child: Text("archive page")),
     const CartHistoryPage(),
-    const Center(child: Text("me page")),
+    const AccountPage(),
   ];
   /* List<Widget> _buildScreens() {
     return [

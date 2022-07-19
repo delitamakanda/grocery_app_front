@@ -137,11 +137,10 @@ class CartHistoryPage extends StatelessWidget {
                                                                 image: DecorationImage(
                                                                     fit: BoxFit
                                                                         .cover,
-                                                                    image: NetworkImage(AppConstants
-                                                                            .BASE_URL +
-                                                                        getCartHistoryList[listCounters -
+                                                                    image: NetworkImage(getCartHistoryList[
+                                                                            listCounters -
                                                                                 1]
-                                                                            .img!))),
+                                                                        .img!))),
                                                           )
                                                         : Container();
                                                   })),

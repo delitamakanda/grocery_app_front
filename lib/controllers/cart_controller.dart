@@ -94,6 +94,7 @@ class CartController extends GetxController {
     _items.forEach((key, value) {
       total += value.quantity! * int.parse(value.price!);
     });
+    print(total.toString() + "\n");
     return total;
   }
 
