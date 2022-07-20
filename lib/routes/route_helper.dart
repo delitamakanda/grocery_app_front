@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:grocery_app_front/pages/auth/signin_page.dart';
+import 'package:grocery_app_front/pages/auth/signup_page.dart';
 import 'package:grocery_app_front/pages/cart/cart_history.dart';
 import 'package:grocery_app_front/pages/cart/cart_page.dart';
 import 'package:grocery_app_front/pages/food/popular_food_detail.dart';
@@ -9,19 +11,23 @@ import 'package:grocery_app_front/pages/splash/splash_page.dart';
 class RouteHelper {
   static const String splash = '/splash';
   static const String initial = '/';
+  static const String signin = '/signin';
+  static const String signup = '/signup';
   static const String popularFood = '/popular-food';
   static const String recommendedFood = '/recommended-food';
   static const String cart = '/cart';
   static const String cartHistory = '/cart-history';
 
-  static String getSplash() => '$splash';
-  static String getInitial() => '$initial';
+  static String getSplash() => splash;
+  static String getInitial() => initial;
+  static String getSignin() => signin;
+  static String getSignup() => signup;
   static String getPopularFood(int pageId, String page) =>
       '$popularFood?pageId=$pageId&page=$page';
   static String getRecommendedFood(int pageId, String page) =>
       '$recommendedFood?pageId=$pageId&page=$page';
-  static String getCart() => '$cart';
-  static String getCartHistory() => '$cartHistory';
+  static String getCart() => cart;
+  static String getCartHistory() => cartHistory;
 
   static List<GetPage> routes = [
     GetPage(
@@ -33,6 +39,17 @@ class RouteHelper {
         name: initial,
         page: () {
           return HomePage();
+        }),
+    GetPage(
+        name: signup,
+        page: () {
+          return SignupPage();
+        },
+        transition: Transition.fade),
+    GetPage(
+        name: signin,
+        page: () {
+          return SigninPage();
         }),
     GetPage(
         name: popularFood,

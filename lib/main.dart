@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:grocery_app_front/controllers/cart_controller.dart';
 import 'package:grocery_app_front/controllers/popular_product_controller.dart';
 import 'package:grocery_app_front/controllers/recommended_product_controller.dart';
+import 'package:grocery_app_front/pages/auth/signin_page.dart';
 import 'package:grocery_app_front/pages/auth/signup_page.dart';
 import 'package:grocery_app_front/routes/route_helper.dart';
 import 'package:grocery_app_front/utils/app_constants.dart';

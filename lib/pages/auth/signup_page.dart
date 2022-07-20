@@ -1,6 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:grocery_app_front/base/custom_snackbar.dart';
+import 'package:grocery_app_front/controllers/auth_controller.dart';
+import 'package:grocery_app_front/models/signup_body_model.dart';
 import 'package:grocery_app_front/utils/colors.dart';
 import 'package:grocery_app_front/utils/dimensions.dart';
 import 'package:grocery_app_front/widgets/app_text_field_widget.dart';
@@ -19,6 +22,42 @@ class SignupPage extends StatelessWidget {
       "t.png",
       "g.png",
     ];
+    void _registration() {
+      var authController = Get.find<AuthController>();
+      String name = nameController.text.trim();
+      String email = emailController.text.trim();
+      String phone = phoneController.text.trim();
+      String password = passwordController.text.trim();
+      if (name.isEmpty) {
+        //
+      } else if (email.isEmpty) {
+        showCustomSnackbar("Email is required", title: "Email");
+      } else if (!GetUtils.isEmail(email)) {
+        showCustomSnackbar("Not a valid email address",
+            title: "Valid email address");
+      } else if (phone.isEmpty) {
+        showCustomSnackbar("Phone is required", title: "Phone");
+      } else if (name.isEmpty) {
+        showCustomSnackbar("Name is required", title: "Name");
+      } else if (password.isEmpty) {
+        showCustomSnackbar("Password is required", title: "Password");
+      } else if (password.length < 8) {
+        showCustomSnackbar("Password must be longer than 8 characters",
+            title: "Password validation");
+      } else {
+        showCustomSnackbar("Done", title: "Perfect");
+        SignupBody signupBody = SignupBody(
+            email: email, password: password, phone: phone, name: name);
+        authController.registration(signupBody).then((status) {
+          if (status.isSuccess) {
+            print("success registration: " + status.message);
+          } else {
+            showCustomSnackbar(status.message);
+          }
+        });
+      }
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -64,17 +103,22 @@ class SignupPage extends StatelessWidget {
           SizedBox(
             height: Dimensions.height20,
           ),
-          Container(
-            width: Dimensions.screenWidth / 2,
-            height: Dimensions.screenHeight / 13,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Dimensions.radius30),
-                color: AppColors.mainColor),
-            child: Center(
-              child: BigText(
-                color: Colors.white,
-                text: "Signup",
-                size: Dimensions.fontSize20 + Dimensions.fontSize20 / 2,
+          GestureDetector(
+            onTap: () {
+              _registration();
+            },
+            child: Container(
+              width: Dimensions.screenWidth / 2,
+              height: Dimensions.screenHeight / 13,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(Dimensions.radius30),
+                  color: AppColors.mainColor),
+              child: Center(
+                child: BigText(
+                  color: Colors.white,
+                  text: "Signup",
+                  size: Dimensions.fontSize20 + Dimensions.fontSize20 / 2,
+                ),
               ),
             ),
           ),
