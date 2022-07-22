@@ -78,8 +78,9 @@ class CartHistoryPage extends StatelessWidget {
                 ),
               ],
             )),
-        GetBuilder<CartController>(builder: (cartController) {
-          return cartController.getItems.length > 0
+        GetBuilder<CartController>(builder: (_cartController) {
+          var cartLength = _cartController.getCartHistoryList();
+          return cartLength.length > 0
               ? Expanded(
                   child: Container(
                       margin: EdgeInsets.only(

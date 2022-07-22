@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:grocery_app_front/controllers/auth_controller.dart';
+import 'package:grocery_app_front/controllers/cart_controller.dart';
+import 'package:grocery_app_front/routes/route_helper.dart';
 import 'package:grocery_app_front/utils/colors.dart';
 import 'package:grocery_app_front/utils/dimensions.dart';
 import 'package:grocery_app_front/widgets/account_widget.dart';
@@ -101,22 +105,32 @@ class AccountPage extends StatelessWidget {
                         iconColor: Colors.white,
                       ),
                       bigText: BigText(
-                        text: "Message",
+                        text: "Messages",
                       )),
                   SizedBox(
                     height: Dimensions.height20,
                   ),
-                  AccountWidget(
-                      appIcon: AppIcon(
-                        icon: Icons.message_outlined,
-                        iconSize: Dimensions.height10 * 5 / 2,
-                        size: Dimensions.height10 * 5,
-                        backgroundColor: Colors.redAccent,
-                        iconColor: Colors.white,
-                      ),
-                      bigText: BigText(
-                        text: "Message",
-                      )),
+                  GestureDetector(
+                    onTap: () {
+                      if (Get.find<AuthController>().userHasLoggedIn()) {
+                        Get.find<AuthController>().clearSharedData();
+                        Get.find<CartController>().clearCartHistory();
+                        Get.find<CartController>().clear();
+                        Get.offNamed(RouteHelper.getSignin());
+                      }
+                    },
+                    child: AccountWidget(
+                        appIcon: AppIcon(
+                          icon: Icons.logout,
+                          iconSize: Dimensions.height10 * 5 / 2,
+                          size: Dimensions.height10 * 5,
+                          backgroundColor: Colors.redAccent,
+                          iconColor: Colors.white,
+                        ),
+                        bigText: BigText(
+                          text: "Logout",
+                        )),
+                  ),
                   SizedBox(
                     height: Dimensions.height20,
                   ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grocery_app_front/base/no_data_page.dart';
+import 'package:grocery_app_front/controllers/auth_controller.dart';
 import 'package:grocery_app_front/controllers/cart_controller.dart';
 import 'package:grocery_app_front/controllers/popular_product_controller.dart';
 import 'package:grocery_app_front/controllers/recommended_product_controller.dart';
@@ -269,7 +270,11 @@ class CartPage extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          controller.addToHistory();
+                          if (Get.find<AuthController>().userHasLoggedIn()) {
+                            controller.addToHistory();
+                          } else {
+                            Get.toNamed(RouteHelper.getSignin());
+                          }
                         },
                         child: Container(
                           child: BigText(
