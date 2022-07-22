@@ -9,6 +9,7 @@ class AppConstants {
   static const String DRINKS_PRODUCT_URI = '/api/v1/products/drinks';
   static const String SIGNUP_URI = '/api/v1/signup/';
   static const String SIGNIN_URI = '/api/v1/signin/';
+  static const String CURRENT_USER_URI = 'api/v1/customer-info/';
 
   static const String TOKEN = '';
   static const String PHONE_NUMBER = '';
