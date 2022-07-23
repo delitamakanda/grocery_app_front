@@ -240,7 +240,7 @@ class CartPage extends StatelessWidget {
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(Dimensions.radius20 * 2),
                     topRight: Radius.circular(Dimensions.radius20 * 2))),
-            child: controller.getItems.length > 0
+            child: controller.getItems.isNotEmpty
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -260,8 +260,8 @@ class CartPage extends StatelessWidget {
                             SizedBox(
                               width: Dimensions.width10 / 2,
                             ),
-                            //BigText(
-                            //text: "${controller.totalAmount.toString()} €"),
+                            BigText(
+                                text: "${controller.totalAmount.toString()} €"),
                             SizedBox(
                               width: Dimensions.width10 / 2,
                             ),
