@@ -1,20 +1,26 @@
 class UserModel {
   int id;
   String firstName;
-  String lastName;
   String email;
   String phone;
   String dateJoined;
-  int? orderCount;
+  bool isPhoneVerified;
+  bool isMailVerified;
+  int orderCount;
+  String? lastName;
+  String? address;
 
   UserModel(
       {required this.id,
       required this.firstName,
-      required this.lastName,
       required this.email,
       required this.phone,
       required this.dateJoined,
-      this.orderCount});
+      required this.isPhoneVerified,
+      required this.isMailVerified,
+      required this.orderCount,
+      this.lastName,
+      this.address});
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
@@ -24,6 +30,10 @@ class UserModel {
       email: json["email"],
       phone: json["phone_number"],
       dateJoined: json["date_joined"],
+      address: json["address"],
+      orderCount: json["order_count"],
+      isMailVerified: json["mail_is_verified"],
+      isPhoneVerified: json["is_phone_veryfied"],
     );
   }
 }
