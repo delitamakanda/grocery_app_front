@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:grocery_app_front/base/no_data_page.dart';
 import 'package:grocery_app_front/controllers/auth_controller.dart';
 import 'package:grocery_app_front/controllers/cart_controller.dart';
+import 'package:grocery_app_front/controllers/location_controller.dart';
 import 'package:grocery_app_front/controllers/popular_product_controller.dart';
 import 'package:grocery_app_front/controllers/recommended_product_controller.dart';
 import 'package:grocery_app_front/routes/route_helper.dart';
@@ -271,7 +272,12 @@ class CartPage extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           if (Get.find<AuthController>().userHasLoggedIn()) {
-                            controller.addToHistory();
+                            // controller.addToHistory();
+                            if (Get.find<LocationController>()
+                                .addressList
+                                .isEmpty) {
+                              Get.toNamed(RouteHelper.getAddress());
+                            }
                           } else {
                             Get.toNamed(RouteHelper.getSignin());
                           }

@@ -17,6 +17,7 @@ class AccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool _userLogged = Get.find<AuthController>().userHasLoggedIn();
+    print(_userLogged);
     if (_userLogged) {
       Get.find<UserController>().getUserData();
     }

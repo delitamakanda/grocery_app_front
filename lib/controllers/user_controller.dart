@@ -19,6 +19,8 @@ class UserController extends GetxController implements GetxService {
       _userModel = UserModel.fromJson(response.body);
       _isLoading = true;
       responseModel = ResponseModel(true, "success");
+      print(userModel.id);
+      print(userModel.email);
     } else {
       responseModel = ResponseModel(true, response.statusText!);
     }
